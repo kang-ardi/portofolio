@@ -1,0 +1,136 @@
+{
+  "proyek": [
+    {
+      "PJK2025-0001": {
+        "id": 1,
+        "title": {
+          "id": "Visualisasi Data Cuaca",
+          "en": "Weather Data Visualization"
+        },
+        "slug": {
+          "id": "<span class='fw-bolder'>Tujuan</span>: Mempermudah analisis laporan cuaca melalui dashboard interaktif berbasis R.<p><span class='fw-bolder'>Hasil</span>: Analisis perubahan cuaca menjadi lebih mudah karena data telah tervisualisasi dengan baik.</p>",
+          "en": "<span class='fw-bolder'>Objective</span>: To simplify weather report analysis through an interactive R-based dashboard.<p><span class='fw-bolder'>Outcome</span>: Weather pattern analysis becomes easier as the data is clearly visualized.</p>"
+        },
+        "description": {
+          "id": "Pada aplikasi visualisasi data cuaca berbasis Shiny ini, saya merancang sistem yang memungkinkan klien melakukan eksplorasi data secara interaktif dan fleksibel. Melalui panel kontrol di sisi kiri, klien dapat memilih jenis visualisasi serta variabel X dan Y sesuai kebutuhan. Contohnya pada bar plot interaktif, hubungan antara Evaporation dan MaxTemp dapat diamati dengan jelas untuk melihat pola variasi suhu maksimum pada berbagai tingkat penguapan. Selain itu, saya menyediakan line plot untuk melihat tren hubungan MinTemp dan MaxTemp, scatter plot dengan pewarnaan variabel untuk mengidentifikasi pola antara Evaporation dan Rainfall, serta tabel data interaktif yang dilengkapi fitur pencarian dan pengurutan. Kombinasi ini saya rancang agar klien dapat memperoleh gambaran visual secara cepat sekaligus melakukan penelusuran data secara detail sebagai dasar pengambilan keputusan.",
+          "en": "A Shiny-based weather data visualization application, I designed a system that allows clients to explore data interactively and flexibly. Through the control panel on the left side, users can select the type of visualization as well as the X and Y variables according to their needs. For example, in the interactive bar plot, the relationship between Evaporation and MaxTemp can be clearly observed to identify patterns in maximum temperature variation across different evaporation levels. In addition, I provide a line plot to examine trends between MinTemp and MaxTemp, a scatter plot with variable-based color encoding to identify patterns between Evaporation and Rainfall, as well as an interactive data table equipped with search and sorting features. This combination is designed to enable clients to quickly gain visual insights while also conducting detailed data exploration as a basis for informed decision-making."
+        },
+        "skill": ["R", "RGUI", "Shiny", "Data Cleaning", "Data Visualization"],
+        "image": [
+          "r-weather-project-1.jpg",
+          "r-weather-project-2.jpg",
+          "r-weather-project-3.jpg",
+          "r-weather-project-4.jpg"
+        ]
+      }
+    },
+    {
+      "PJK2025-0002": {
+        "id": 2,
+        "title": {
+          "id": "Dashboard Laporan Marketing & Sales",
+          "en": "Marketing & Sales Performance Dashboard"
+        },
+        "slug": {
+          "id": "<span class='fw-bolder'>Tujuan</span>: Memantau kinerja penjualan, mengevaluasi efektivitas promosi, serta mendukung pengambilan keputusan strategis berbasis data.<p><span class='fw-bolder'>Hasil</span>: Memberikan insight mengenai tren penjualan, kontribusi area, outlet, dan menu untuk optimalisasi strategi bisnis.</p>",
+          "en": "<span class='fw-bolder'>Objective</span>: To monitor sales performance, evaluate promotional effectiveness, and support data-driven strategic decisions.<p><span class='fw-bolder'>Outcome</span>: Provides insights into sales trends, area, outlet, and menu contributions to optimize business strategy.</p>"
+        },
+        "description": {
+          "id": "Laporan dashboard ini menyajikan analisis kinerja penjualan secara komprehensif berdasarkan beberapa perspektif utama, yaitu perbandingan waktu, area, outlet, menu, serta kontribusi program promosi. Pada bagian Comparison, laporan menampilkan perbandingan penjualan bulan berjalan dengan bulan sebelumnya serta analisis week to week untuk melihat tren pertumbuhan atau penurunan penjualan secara periodik. Informasi ini membantu dalam memantau stabilitas dan dinamika penjualan dari waktu ke waktu. <p>Selain itu, pada bagian Sales dan Rank, laporan menampilkan distribusi penjualan berdasarkan area (Jawa, Sumatera, Kalimantan, Sulawesi, dan Papua), peringkat menu terlaris dan kurang diminati (Top 50 dan Bottom 50), serta peringkat outlet dengan performa terbaik dan terendah. Sementara pada bagian Promotion, laporan menyajikan kontribusi masing-masing program promosi dan menu terhadap total penjualan, baik dari sisi kuantitas transaksi maupun nilai penjualan bersih (net amount). Seluruh data dilengkapi dengan filter bulan, minggu, kategori, area, dan tipe promosi untuk analisis yang lebih spesifik dan terarah.</p>",
+          "en": "This dashboard report presents a comprehensive analysis of sales performance from several key perspectives, including time-based comparisons, areas, outlets, menus, and the contribution of promotional programs. In the Comparison section, the report displays a comparison between the current month’s sales and the previous month, as well as a week-to-week analysis to identify periodic sales growth or decline trends. This information helps monitor sales stability and dynamics over time.<p>In addition, the Sales and Rank sections present sales distribution by area (Java, Sumatra, Kalimantan, Sulawesi, and Papua), rankings of best-selling and least popular menus (Top 50 and Bottom 50), as well as rankings of the highest- and lowest-performing outlets. Meanwhile, the Promotion section highlights the contribution of each promotional program and menu to total sales, both in terms of transaction volume and net sales value (net amount). All data are supported by filters for month, week, category, area, and promotion type to enable more specific and targeted analysis.</p>"
+        },
+        "skill": ["Excel", "Data Cleaning", "Data Visualization"],
+        "image": [
+          "ex-mkt-project-1.jpg",
+          "ex-mkt-project-2.jpg",
+          "ex-mkt-project-3.jpg",
+          "ex-mkt-project-4.jpg",
+          "ex-mkt-project-5.jpg"
+        ]
+      }
+    },
+    {
+      "PJK2025-0003": {
+        "id": 3,
+        "title": {
+          "id": "Template Kontrol Stok Harian",
+          "en": "Daily Stock Control Template"
+        },
+        "slug": {
+          "id": "<span class='fw-bolder'>Tujuan</span>: Mengontrol ketersediaan stok secara harian dan memastikan perencanaan pengadaan berjalan optimal.<p><span class='fw-bolder'>Hasil</span>: Memberikan visibilitas kondisi stok untuk mendukung keputusan replenishment dan efisiensi persediaan.</p>",
+          "en": "<span class='fw-bolder'>Objective</span>: To monitor daily stock availability and ensure optimal procurement planning.<p><span class='fw-bolder'>Outcome</span>: Provides clear inventory visibility to support replenishment decisions and inventory efficiency.</p>"
+        },
+        "description": {
+          "id": "Laporan monitoring persediaan bulanan yang menampilkan pergerakan stok harian, rata-rata pemakaian, buffer stok, serta identifikasi potensi overstock dan stock out untuk mendukung kelancaran operasional dan perencanaan supply chain.",
+          "en": "A monthly inventory monitoring report that tracks daily stock movements, average usage, buffer stock levels, and identifies potential overstock and stock-out risks to support smooth operations and supply chain planning."
+        },
+        "skill": ["Excel", "Reporting", "Data Analysis"],
+        "image": [
+          "ex-prc-project-1.jpg",
+          "ex-prc-project-2.jpg",
+          "ex-prc-project-3.jpg",
+          "ex-prc-project-4.jpg",
+          "ex-prc-project-5.jpg"
+        ]
+      }
+    },
+    {
+      "PJK2025-0004": {
+        "id": 4,
+        "title": {
+          "id": "Dashboard Sales Gudang dan Performa Outlet",
+          "en": "Warehouse Sales & Outlet Performance Dashboard"
+        },
+        "slug": {
+          "id": "<span class='fw-bolder'>Tujuan</span>: Memantau keseimbangan penjualan dan belanja outlet serta pencapaian target gudang pusat.<p><span class='fw-bolder'>Hasil</span>: Memberikan insight performa gudang pusat, outlet, item, dan brand untuk pengambilan keputusan strategis.</p>",
+          "en": "<span class='fw-bolder'>Objective</span>: To monitor the balance between outlet sales and purchasing and track central warehouse target achievement.<p><span class='fw-bolder'>Outcome</span>: Provides insights into warehouse, outlet, item, and brand performance for strategic decision-making.</p>"
+        },
+        "description": {
+          "id": "Dashboard berbasis Google Sheet yang menyajikan ringkasan pencapaian target penjualan gudang pusat, perbandingan month to date, serta status belanja outlet untuk membantu evaluasi distribusi dan pengadaan barang.",
+          "en": "A Google Sheets-based dashboard that presents central warehouse sales target achievements, month-to-date comparisons, and outlet purchasing status to support distribution and procurement evaluation."
+        },
+        "skill": ["Spreadsheet", "Data Visualization", "Data Cleaning", "Data Analysis"],
+        "image": [
+          "gs-sc-project-1.jpg",
+          "gs-sc-project-2.jpg",
+          "gs-sc-project-3.jpg",
+          "gs-sc-project-4.jpg",
+          "gs-sc-project-5.jpg"
+        ]
+      }
+    },
+    {
+      "PJK2025-0005": {
+        "id": 5,
+        "title": {
+          "id": "Aplikasi Pengelolaan Data Bahan Ajar SITTA 3.0",
+          "en": "SITTA 3.0 Teaching Materials Management Application"
+        },
+        "slug": {
+          "id": "<span class='fw-bolder'>Tujuan</span>: Memudahkan pemantauan stok bahan ajar dan proses pengiriman secara terpusat dan real-time.<p><span class='fw-bolder'>Hasil</span>: Distribusi bahan ajar menjadi lebih efisien, terkontrol, dan minim risiko keterlambatan.</p>",
+          "en": "<span class='fw-bolder'>Objective</span>: To centrally and real-time monitor teaching material stock and delivery processes.<p><span class='fw-bolder'>Outcome</span>: Teaching material distribution becomes more efficient, controlled, and less prone to delays.</p>"
+        },
+        "description": {
+          "id": "Aplikasi web berbasis HTML, CSS, dan JavaScript tanpa database yang menggunakan JSON dan localStorage sebagai sumber data. Aplikasi ini menyediakan fitur autentikasi pengguna, dashboard ringkasan stok dan pengiriman, pengelolaan data bahan ajar, serta tracking pengiriman untuk mendukung distribusi bahan ajar secara terintegrasi.",
+          "en": "A web-based application built with HTML, CSS, and JavaScript without a database, utilizing JSON and localStorage as data sources. The application provides user authentication, stock and delivery dashboards, teaching material management, and shipment tracking to support integrated teaching material distribution."
+        },
+        "skill": ["Web Programming", "HTML", "CSS", "Javascript", "Data Manipulation"],
+        "image": [
+          "w-sitta-project-1.jpg",
+          "w-sitta-project-2.jpg",
+          "w-sitta-project-3.jpg",
+          "w-sitta-project-4.jpg",
+          "w-sitta-project-5.jpg",
+          "w-sitta-project-6.jpg",
+          "w-sitta-project-7.jpg",
+          "w-sitta-project-8.jpg",
+          "w-sitta-project-9.jpg",
+          "w-sitta-project-10.jpg",
+          "w-sitta-project-11.jpg",
+          "w-sitta-project-12.jpg",
+          "w-sitta-project-13.jpg"
+        ]
+      }
+    }
+  ]
+}
