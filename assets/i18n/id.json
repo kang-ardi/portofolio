@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Ardiansyah — Portofolio Data Analyst"
+  },
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "work": "Proyek",
+    "skills": "Keterampilan",
+    "contact": "Kontak"
+  },
+  "common": {
+    "download_cv": "Unduh CV",
+    "view_projects": "Lihat Proyek",
+    "contact_me": "Hubungi Saya"
+  },
+  "home": {
+    "hero_title": "Mengubah Data Mentah Menjadi Wawasan yang Dapat Diterapkan.",
+    "hero_subtitle": "Saya membantu tim bisnis menemukan insight, mengukur performa, dan membangun dashboard yang mudah dipakai. Fokus pada analisis yang rapi, reproducible, dan rekomendasi yang actionable.",
+    "final_cta_title": "Butuh insight atau dashboard untuk tim Anda?",
+    "final_cta_text": "Saya bisa bantu dari data prep, analisis, sampai dashboard siap pakai."
+  }
+}

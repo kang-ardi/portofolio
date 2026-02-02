@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Ardiansyah — Data Analyst Portfolio"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "work": "Work",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "common": {
+    "download_cv": "Download CV",
+    "view_projects": "View Projects",
+    "contact_me": "Contact Me"
+  },
+  "home": {
+    "hero_title": "Turning raw data into actionable insights.",
+    "hero_subtitle": "I help business teams uncover insights, measure performance, and build dashboards people actually use. I focus on clean, reproducible analysis and actionable recommendations.",
+    "final_cta_title": "Need insights or a dashboard for your team?",
+    "final_cta_text": "I can help from data prep and analysis to production-ready dashboards."
+  }
+}

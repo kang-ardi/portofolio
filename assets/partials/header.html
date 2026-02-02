@@ -1,0 +1,57 @@
+<header>
+    <div class="container">
+        <div class="nav">
+            <a class="brand" href="index.html" aria-label="Beranda">
+                <span class="name">ARDIANSYAH</span>
+            </a>
+
+            <nav aria-label="Navigasi utama">
+                <ul>
+                    <li>
+                        <a href="index.html" data-i18n-id="Beranda" data-i18n-en="Home"></a>
+                    </li>
+                    <li>
+                        <a href="about.html" data-i18n-id="Tentang" data-i18n-en="About"></a>
+                    </li>
+                    <li>
+                        <a href="work.html" data-i18n-id="Proyek" data-i18n-en="Projects"></a>
+                    </li>
+                    <li>
+                        <a href="skills.html" data-i18n-id="Keterampilan" data-i18n-en="Skills"></a>
+                    </li>
+                    <li>
+                        <a href="contact.html" data-i18n-id="Kontak" data-i18n-en="Contact"></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- <div class="nav-cta">
+                <a class="btn btn-cv" href="assets/file/cv.pdf" target="_blank" rel="noopener">Unduh CV</a>
+            </div> -->
+
+            <div class="lang-switch" id="langToggle" role="group" aria-label="Language toggle">
+                <button type="button" class="lang-opt" data-lang="id" aria-pressed="true">ID</button>
+                <button type="button" class="lang-opt" data-lang="en" aria-pressed="false">EN</button>
+            </div>
+
+            <button class="hamburger" id="btnMenu" type="button" aria-expanded="false" aria-controls="mobileMenu"
+                aria-label="Buka menu navigasi">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu" hidden>            
+            <a href="index.html" data-i18n-id="Beranda" data-i18n-en="Home"></a>           
+            <a href="about.html" data-i18n-id="Tentang" data-i18n-en="About"></a>           
+            <a href="work.html" data-i18n-id="Proyek" data-i18n-en="Projects"></a>           
+            <a href="skills.html" data-i18n-id="Keterampilan" data-i18n-en="Skills"></a>           
+            <a href="contact.html" data-i18n-id="Kontak" data-i18n-en="Contact"></a>        
+        </div>
+
+        <!-- Overlay untuk klik area luar -->
+        <div class="nav-overlay" id="navOverlay" hidden></div>
+    </div>
+</header>

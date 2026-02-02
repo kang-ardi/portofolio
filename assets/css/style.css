@@ -1,0 +1,1455 @@
+:root {
+    /* Light warm elegant */
+    --bg: #F6F3EF;
+    --panel: #FFFFFF;
+    --card: #FBF8F3;
+    --text: #2F2728;
+    --muted: #6E5B57;
+    --line: rgba(47, 39, 40, .12);
+
+    /* Accent inspired by your palette */
+    --accent: #8B7165;
+    /* taupe */
+    --accent2: #B7A289;
+    /* sand */
+
+    --shadow: 0 18px 40px rgba(47, 39, 40, .12);
+    --radius: 18px;
+    --max: 1100px;
+
+    /* Tinggi header untuk overlay & mobile-menu (sesuaikan jika header berubah) */
+    --header-h: 72px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Sticky Hardening (anti sticky mati) =====
+   Sticky bisa gagal kalau ada parent yang jadi scroll container (overflow auto/hidden)
+   atau ada transform/filter di ancestor. Ini memastikan layout tetap "normal".
+*/
+html,
+body {
+    height: auto;
+}
+
+/* Anti flash i18n: sembunyikan sebentar sampai i18n siap */
+html.lang-preload body {
+    filter: blur(2px);
+    opacity: .2;
+}
+
+html.i18n-ready body {
+    filter: none;
+    opacity: 1;
+    transition: filter .12s ease, opacity .12s ease;
+}
+
+/* ================================
+   i18n visibility (HANYA tampilkan bahasa aktif)
+   ================================ */
+.i18n-id,
+.i18n-en {
+    display: inline;
+}
+
+html[lang="id"] .i18n-en {
+    display: none !important;
+}
+
+html[lang="en"] .i18n-id {
+    display: none !important;
+}
+
+/* Jika Anda butuh elemen yang memang harus block */
+.i18n-block .i18n-id,
+.i18n-block .i18n-en {
+    display: block;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(139, 113, 101, .20), transparent 55%),
+        radial-gradient(900px 500px at 85% 20%, rgba(183, 162, 137, .22), transparent 55%),
+        linear-gradient(180deg, var(--bg), #EFE9E3 70%);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* aman, tidak mematikan sticky */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(var(--max), calc(100% - 40px));
+    margin: 0 auto;
+}
+
+/* ================================
+   BLUR MODE (HEADER TIDAK IKUT BLUR)
+   ================================
+   Wajib HTML:
+   <header>...</header>
+   <div class="page-content">
+     <main>...</main>
+     <footer>...</footer>
+   </div>
+*/
+.page-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 5em;
+
+    /* penting untuk sticky: jangan jadikan wrapper sebagai scroll container */
+    overflow: visible !important;
+    height: auto !important;
+    transform: none !important;
+
+    transition: filter .25s ease, opacity .25s ease;
+}
+
+body.nav-open .page-content {
+    filter: blur(8px);
+    opacity: .35;
+}
+
+body.nav-open {
+    overflow: hidden;
+    /* lock scroll saat menu terbuka */
+}
+
+/* ================================
+   Header / Nav
+   ================================ */
+header {
+    position: fixed;
+    display: block;
+    width: 100%;
+    top: 0;
+    z-index: 2000;
+    background: rgba(246, 243, 239, 1);
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    gap: 12px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    letter-spacing: .2px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 0 0 4px rgba(134, 183, 255, .12);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+nav a {
+    color: var(--muted);
+    font-weight: 800;
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: .2s ease;
+}
+
+nav a:hover {
+    color: var(--text);
+    background: rgba(232, 238, 252, .06);
+}
+
+nav a.active {
+    color: var(--text);
+    background: rgba(232, 238, 252, .10);
+    border: 1px solid var(--line);
+}
+
+.nav-cta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(232, 238, 252, .10);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 2px;
+}
+
+/* ================================
+   Language Toggle (ID/EN)
+   Active side = white box
+   ================================ */
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: rgba(232, 238, 252, .10);
+}
+
+.lang-switch .lang-opt {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: .2px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+    min-width: 38px;
+    text-align: center;
+}
+
+.lang-switch .lang-opt:hover {
+    transform: translateY(-1px);
+    color: var(--text);
+}
+
+.lang-switch .lang-opt.is-active {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 20px rgba(47, 39, 40, .10);
+}
+
+.lang-switch .lang-opt:focus-visible {
+    outline: 2px solid rgba(139, 113, 101, .45);
+    outline-offset: 2px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(232, 238, 252, .06);
+    color: var(--text);
+    font-weight: 800;
+    font-size: 14px;
+    transition: .2s ease;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    background: rgba(232, 238, 252, .10);
+}
+
+.btn.primary {
+    border: 0;
+    background: linear-gradient(135deg, rgba(204, 188, 129, .887), rgba(251, 236, 184, .887));
+    color: #06101f;
+}
+
+.btn.small {
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.btn-close-modal {
+    background-color: #dc3545;
+    color: #FFF;
+}
+
+.btn-close-modal:hover {
+    background-color: #fa6f7d;
+    color: #FFF;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    /* default desktop hidden */
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.hamburger .bar {
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text);
+    opacity: .85;
+    transition: transform .25s ease, opacity .25s ease, background .25s ease;
+}
+
+/* Open -> X merah */
+.hamburger[aria-expanded="true"] {
+    border-color: rgba(220, 38, 38, .35);
+    background: rgba(220, 38, 38, .08);
+}
+
+.hamburger[aria-expanded="true"] .bar {
+    background: #dc2626;
+    opacity: 1;
+}
+
+.hamburger[aria-expanded="true"] .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ================================
+   Overlay fullscreen (tidak blur header)
+   ================================ */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    top: var(--header-h);
+    /* penting: header tidak ikut blur */
+    z-index: 500;
+    background: rgba(0, 0, 0, .18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+}
+
+.nav-overlay[hidden] {
+    display: none !important;
+}
+
+/* ================================
+   Mobile Menu (floating, tajam)
+   ================================ */
+.mobile-menu a {
+    display: block;
+    padding: 12px 12px;
+    border-radius: 12px;
+    color: var(--muted);
+    font-weight: 800;
+}
+
+.mobile-menu a:hover {
+    background: rgba(232, 238, 252, .06);
+    color: var(--text);
+}
+
+/* Page layout */
+main {
+    padding: 34px 0;
+}
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    letter-spacing: -0.4px;
+}
+
+.lead {
+    margin: 0 0 18px;
+    color: var(--muted);
+    max-width: 75ch;
+}
+
+.panel,
+.card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    margin: 1rem 0;
+}
+
+.card h2 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+/* Hero (index) */
+.hero {
+    padding: 54px 0 34px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 28px;
+    align-items: center;
+}
+
+.kicker {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 13px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(232, 238, 252, .04);
+}
+
+.title {
+    font-size: clamp(34px, 4.2vw, 54px);
+    line-height: 1.12;
+    margin: 14px 0 10px;
+    letter-spacing: -0.6px;
+}
+
+.name {
+    font-size: 36px;
+    line-height: 1.12;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--muted), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0 0 18px;
+    max-width: 60ch;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.profile {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 14px;
+}
+
+.avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 18px;
+    object-fit: cover;
+    border: 1px solid rgba(232, 238, 252, .14);
+}
+
+.pname {
+    font-weight: 950;
+    margin: 0;
+}
+
+.prole {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 13px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    background: rgba(232, 238, 252, .04);
+}
+
+.stat b {
+    display: block;
+    font-size: 16px;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* Work grid */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    align-items: stretch;
+}
+
+.work-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: .5rem;
+    background: var(--card);
+    transition: .2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.work-card img {
+    border-radius: 10px;
+    border: 2px solid rgba(137, 138, 138, 0.4);
+}
+
+.work-card:hover {
+    transform: translateY(-2px);
+}
+
+.work-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1 1 auto;
+}
+
+.work-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 950;
+}
+
+.work-meta {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.work-meta p {
+    margin: 0;
+}
+
+.work-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.thumb {
+    aspect-ratio: 16/10;
+    border-bottom: 1px solid var(--line);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: .5rem;
+}
+
+.tag {
+    font-size: 10px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    background: rgba(232, 238, 252, .04);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 900;
+}
+
+/* Skills grid */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.skill {
+    border: 1px solid var(--line);
+    background: rgba(18, 31, 56, .55);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.skill b {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.skill ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+}
+
+.skills-level {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* Card skill mengikuti bahasa desain Anda */
+.skill-card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 18px 18px 16px;
+}
+
+.skill-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.skill-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 950;
+    color: var(--text);
+    letter-spacing: -0.2px;
+}
+
+/* Badge level: soft, elegan */
+.skill-level {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(232, 238, 252, .04);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+/* Dot kecil dalam badge */
+.skill-level::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(110, 91, 87, .45);
+}
+
+/* Meter tipis: memperkuat “tingkatan” tanpa norak */
+.skill-meter {
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, .02);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.skill-meter-bar {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(139, 113, 101, .55), rgba(183, 162, 137, .60));
+}
+
+/* Level mapping: width + nuansa warna masih satu palette */
+
+.skill-meter-bar.level-basic {
+    width: 33.33%;
+    opacity: .75;
+}
+
+.skill-meter-bar.level-intermediate {
+    width: 66.67%;
+    opacity: .9;
+}
+
+.skill-meter-bar.level-advanced {
+    width: 100%;
+    opacity: 1;
+}
+
+/* Badge dot ikut level (lebih soft, tetap satu tone) */
+.skill-level.level-basic::before {
+    background: rgba(110, 91, 87, .45);
+}
+
+.skill-level.level-intermediate::before {
+    background: rgba(139, 113, 101, .70);
+}
+
+.skill-level.level-advanced::before {
+    background: rgba(183, 162, 137, .95);
+}
+
+/* List rapi dan konsisten */
+.skill-list {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.skill-list li {
+    margin: 6px 0;
+}
+
+/* Contact */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: start;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(232, 238, 252, .04);
+    color: var(--muted);
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+.contact-item span {
+    color: var(--text);
+}
+
+/* ===== Contact Icons (Neutral Version) ===== */
+.contact-icons {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.contact-icon {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+/* ikon netral */
+.contact-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--text);
+    opacity: .85;
+}
+
+/* hover netral (tanpa warna brand) */
+.contact-icon:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    border-color: transparent;
+}
+
+.contact-icon:hover svg {
+    fill: #ffffff;
+    opacity: 1;
+}
+
+/* ===== Tooltip (Neutral & Elegant) ===== */
+.contact-icon {
+    position: relative;
+}
+
+/* Bubble tooltip */
+.contact-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    z-index: 10;
+}
+
+/* Arrow kecil */
+.contact-icon::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: var(--card);
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    transition: opacity .2s ease;
+    z-index: 9;
+}
+
+.contact-icon:hover::after,
+.contact-icon:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.contact-icon:hover::before,
+.contact-icon:focus-visible::before {
+    opacity: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: #FFFFFF;
+    color: var(--text);
+    outline: none;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 6px 0 0;
+}
+
+/* Footer */
+footer {
+    padding: 22px 0 34px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 2rem;
+}
+
+/* ===== About Page: Card Layout like reference ===== */
+.about-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 1rem;
+}
+
+.about-hero-card {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    gap: 16px;
+    align-items: center;
+
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--card);
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+.about-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-hero-title {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--text);
+}
+
+.hero-text {
+    min-height: 160px;
+    text-align: justify;
+    padding-right: 2em;
+}
+
+.about-hero-text {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.about-main-card {
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--card);
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+.about-section {
+    padding: 10px 0;
+}
+
+.about-section+.about-section {
+    border-top: 1px solid var(--line);
+}
+
+.about-h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--text);
+}
+
+.about-p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.about-list {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.about-list li {
+    margin: 4px 0;
+}
+
+.about-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.about-pill {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+
+    background: linear-gradient(135deg,
+            rgba(139, 113, 101, .12),
+            rgba(183, 162, 137, .18));
+
+    color: var(--text);
+    border: 1px solid var(--line);
+}
+
+/* ================================
+   Project Modal (Bootstrap)
+   ================================ */
+
+/* Cegah modal "geser" karena scrollbar-compensation Bootstrap */
+.modal {
+    padding-right: 0 !important;
+    z-index: 3005 !important;
+}
+
+/* Selaraskan modal dengan tema */
+.project-modal {
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+
+    /* KUNCI: batasi tinggi keseluruhan modal */
+    max-height: calc(100vh - 32px);
+    display: flex;
+    flex-direction: column;
+    z-index: 3000 !important;
+}
+
+/* Header/footer tetap “tajam” */
+.project-modal .modal-header,
+.project-modal .modal-footer {
+    background: rgba(246, 243, 239, 1);
+    border-color: var(--line);
+}
+
+/* Perbaikan utama: modal benar-benar center & presisi */
+.modal-dialog.modal-lg {
+    margin: 16px auto;
+    /* <-- FIX: auto supaya center horizontal */
+    width: calc(100% - 32px);
+    /* aman untuk layar kecil */
+    max-width: 900px;
+    /* boleh sesuaikan */
+    z-index: 3010 !important;
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 32px);
+}
+
+/* Body yang scroll (bukan seluruh modal) */
+.project-modal .modal-body {
+    overflow: auto;
+    padding: 16px 18px;
+    scrollbar-gutter: stable;
+}
+
+/* Kalau Anda pakai modal-dialog-scrollable, pastikan tetap patuh */
+.modal-dialog-scrollable .modal-content {
+    max-height: calc(100vh - 32px);
+}
+
+.modal-dialog-scrollable .modal-body {
+    max-height: none;
+}
+
+/* Tombol close (X) */
+.project-modal .btn-close {
+    filter: grayscale(1);
+    opacity: .65;
+}
+
+.project-modal .btn-close:hover {
+    opacity: 1;
+}
+
+/* Tombol footer selaras tema (Anda sudah override juga) */
+.btn-close-modal {
+    border: 1px solid var(--line);
+    background: #dc3545;
+    color: #ffffff;
+    font-weight: 800;
+    border-radius: 12px;
+    padding: 10px 14px;
+}
+
+.btn-close-modal:hover {
+    transform: translateY(-1px);
+    background: #ff0019;
+}
+
+/* Carousel - batasi tinggi agar modal tidak "memanjang" */
+/* #pmCarousel {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, .02);
+}
+
+#pmCarousel .carousel-inner {
+    border-radius: 14px;
+    overflow: hidden;
+}
+ display: block;
+} 
+    
+#pmCarousel .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+}
+    
+#pmCarousel .carousel-control-prev-icon,
+#pmCarousel .carousel-control-next-icon {
+    filter: grayscale(1);
+    opacity: .85;
+}*/
+
+
+/* =========================================================
+   FIX: Carousel controls & indicators (soft tapi terlihat)
+   Target: #pmCarousel (modal project)
+   ========================================================= */
+
+#pmCarousel .carousel-item img {
+    aspect-ratio: 16/10;
+}
+/* Pastikan carousel jadi "anchor" untuk kontrol */
+#pmCarousel {
+    position: relative;
+}
+
+/* Biar tombol tidak terlalu ke tengah */
+#pmCarousel .carousel-control-prev,
+#pmCarousel .carousel-control-next {
+    width: 56px;
+    /* area klik nyaman */
+    opacity: 1;
+    /* jangan terlalu transparan */
+}
+
+/* Geser tombol ke pinggir */
+#pmCarousel .carousel-control-prev {
+    left: 8px;
+}
+
+#pmCarousel .carousel-control-next {
+    right: 8px;
+}
+
+/* Buat tombol soft dengan background pill */
+#pmCarousel .carousel-control-prev-icon,
+#pmCarousel .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+
+    /* soft, masih terlihat di gambar terang */
+    background-color: rgba(246, 243, 239, 0.75);
+    border: 1px solid rgba(47, 39, 40, .18);
+    box-shadow: 0 10px 22px rgba(47, 39, 40, .12);
+
+    /* default icon bootstrap hitam-ish */
+    filter: none;
+}
+
+/* Hover: sedikit lebih tegas */
+#pmCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
+#pmCarousel .carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(246, 243, 239, 0.92);
+    border-color: rgba(47, 39, 40, .28);
+    box-shadow: 0 14px 28px rgba(47, 39, 40, .16);
+}
+
+/* Optional: jika ingin panah lebih "hangat" (soft taupe)
+   Ini cara aman tanpa ganti SVG: pakai drop-shadow halus */
+#pmCarousel .carousel-control-prev-icon,
+#pmCarousel .carousel-control-next-icon {
+    filter: drop-shadow(0 1px 0 rgba(139, 113, 101, .18));
+}
+
+/* =========================
+   Indicators: dibuat terlihat
+   ========================= */
+
+/* Naikkan indikator + kasih background soft */
+#pmCarousel .carousel-indicators {
+    margin-bottom: .65rem;
+}
+
+#pmCarousel .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+
+    background-color: rgba(47, 39, 40, .22);
+    /* soft tapi kontras */
+    border: 1px solid rgba(246, 243, 239, .8);
+    opacity: 1;
+    box-shadow: 0 6px 14px rgba(47, 39, 40, .10);
+}
+
+/* Dot aktif: lebih jelas tapi tetap soft */
+#pmCarousel .carousel-indicators .active {
+    background-color: rgba(139, 113, 101, .55);
+    /* accent lembut */
+    border-color: rgba(47, 39, 40, .18);
+}
+
+/* Jika gambar sangat terang, bantu keterbacaan indikator */
+#pmCarousel .carousel-indicators {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(246, 243, 239, 0.55);
+    border: 1px solid rgba(47, 39, 40, .10);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: inline-flex;
+    left: 35%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+/* Deskripsi */
+.project-desc {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Pills skill selaras tag */
+#pmSkills .badge {
+    font-size: 11px;
+    font-weight: 900;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(232, 238, 252, .04);
+    color: var(--muted);
+}
+
+/* =========================================================
+   Saat Bootstrap Modal terbuka: header ikut blur + nonaktif
+   Bootstrap akan menambah class `modal-open` ke <body>
+   ========================================================= */
+body.modal-open header,
+body.modal-open .page-content {
+    filter: blur(8px);
+    opacity: .35;
+    pointer-events: none;
+    /* supaya nav tidak bisa diklik saat modal */
+}
+
+/* opsional: biar transisinya halus */
+header {
+    transition: filter .25s ease, opacity .25s ease;
+}
+
+/* ================================
+   Fix: Outline button hover text
+   ================================ */
+
+/* Untuk semua outline button */
+.btn-outline-secondary:hover,
+.btn-outline-dark:hover {
+    color: var(--text) !important;
+    /* teks tetap gelap */
+    background: rgba(232, 238, 252, .12);
+    /* soft hover */
+    border-color: var(--line);
+}
+
+/* Fokus & aktif (a11y) */
+.btn-outline-secondary:focus,
+.btn-outline-dark:focus,
+.btn-outline-secondary:active,
+.btn-outline-dark:active {
+    color: var(--text) !important;
+    background: rgba(232, 238, 252, .16);
+    border-color: var(--line);
+    box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 920px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-level {
+        grid-template-columns: 1fr;
+    }
+
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    nav ul {
+        display: none;
+    }
+
+    .hamburger {
+        display: inline-flex;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+
+    .nav {
+        gap: 10px;
+    }
+
+    .brand {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .nav-cta {
+        flex-shrink: 0;
+    }
+
+    /* Mobile menu floating */
+    .mobile-menu {
+        position: fixed;
+        left: 14px;
+        right: 14px;
+        top: calc(var(--header-h) + 0px);
+        /* <-- pakai variable */
+        z-index: 1000;
+
+        background: rgba(246, 243, 239, 1);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 10px;
+
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-8px);
+        overflow: hidden;
+        transition: max-height .28s ease, opacity .22s ease, transform .28s ease;
+    }
+
+    .mobile-menu.is-open {
+        max-height: 420px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .mobile-menu[hidden] {
+        display: none !important;
+    }
+
+    .mobile-menu a.active {
+        color: var(--text);
+        background: rgba(232, 238, 252, .10);
+        border: 1px solid var(--line);
+    }
+
+    .about-hero-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .about-photo {
+        width: 240px;
+        height: 240px;
+        margin: auto;
+    }
+
+    /* Modal: perketat margin mobile agar tidak “mepet” */
+    .modal-dialog.modal-lg {
+        margin: 12px auto;
+        width: calc(100% - 24px);
+    }
+
+    .project-modal {
+        max-height: calc(100vh - 24px);
+    }
+}
+
+/* A11y */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
